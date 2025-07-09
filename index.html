@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Desarrollo Web Frontend y Diseño UI/UX en La Plata | Quantum</title>
+    <meta name="description" content="Potenciamos tu presencia online con sitios web estáticos, diseño UI/UX y optimización SEO. Transformamos tus ideas en experiencias digitales profesionales en La Plata, Buenos Aires.">
+    <meta name="keywords" content="desarrollo web, frontend, diseño web, La Plata, UI, UX, SEO, sitios web, portfolio, catalogo digital, quantum">
+    <link rel="canonical" href="https://quantumweb.netlify.app/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quantumweb.netlify.app/">
+    <meta property="og:title" content="Desarrollo Web Frontend y Diseño UI/UX en La Plata | Quantum">
+    <meta property="og:description" content="Potenciamos tu presencia online con sitios web estáticos, diseño UI/UX y optimización SEO. Transformamos tus ideas en experiencias digitales profesionales.">
+    <meta property="og:image" content="https://quantumweb.netlify.app/galeria/og-image.png"> <!-- Reemplazar con una URL a una imagen para compartir (ej. 1200x630px) -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://quantumweb.netlify.app/">
+    <meta property="twitter:title" content="Desarrollo Web Frontend y Diseño UI/UX en La Plata | Quantum">
+    <meta property="twitter:description" content="Potenciamos tu presencia online con sitios web estáticos, diseño UI/UX y optimización SEO. Transformamos tus ideas en experiencias digitales profesionales.">
+    <meta property="twitter:image" content="https://quantumweb.netlify.app/galeria/og-image.png"> <!-- Reemplazar con una URL a una imagen para compartir -->
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Script para iconos (Lucide Icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Estilo base para usar la fuente Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Pequeño ajuste para el desenfoque del fondo en el hero */
+        .backdrop-blur-sm {
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+        /* Estilo para el enlace de navegación activo */
+        .nav-link.active {
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* --- ANIMACIONES --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Clases para aplicar animaciones en carga inicial */
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+        
+        /* Estilos para retrasos de animación */
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+        .animation-delay-800 { animation-delay: 0.8s; }
+
+        /* Asegurar que los elementos animados empiecen ocultos */
+        .animated {
+            opacity: 0;
+        }
+
+        /* Estilos para la galería de productos/portfolio */
+        .product-item {
+            transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+            overflow: hidden;
+        }
+        .product-item.hidden {
+            transform: scale(0.9);
+            opacity: 0;
+            width: 0;
+            padding: 0;
+            margin: 0;
+        }
+        .filter-btn.active {
+            background-color: #6366f1; /* indigo-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        /* --- NUEVAS ANIMACIONES EN SCROLL --- */
+        /* Estado inicial de los elementos a animar */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+        }
+        /* Estado final cuando el elemento es visible */
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Contenedor para animaciones escalonadas */
+        .stagger-animation > * {
+            transition-delay: var(--stagger-delay);
+        }
+
+    </style>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Soluciones Digitales Quantum",
+      "image": "https://quantumweb.netlify.app/galeria/logo-quantum.png",
+      "@id": "https://quantumweb.netlify.app/",
+      "url": "https://quantumweb.netlify.app/",
+      "telephone": "+5491164020912",
+      "email": "theaiproyectcrew@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Diagonal 76 289 2D",
+        "addressLocality": "La Plata",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "B1900",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.919436,
+        "longitude": -57.967218
+      },
+      "description": "Agencia de desarrollo web frontend y diseño UI/UX en La Plata, especializada en sitios web estáticos, catálogos digitales y optimización SEO.",
+      "servesCuisine": "",
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- ========== BARRA DE NAVEGACIÓN ========== -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" data-target="hero" class="nav-link text-2xl font-bold flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-indigo-400"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                        Quantum
+                    </a>
+                </div>
+                <!-- Navegación de Escritorio -->
+                <nav id="desktop-nav" class="hidden md:flex md:items-center md:space-x-8 text-sm">
+                    <a href="#" data-target="hero" class="nav-link text-gray-300 hover:text-white transition-colors duration-300 active">Inicio</a>
+                    <a href="#" data-target="servicios" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Servicios</a>
+                    <a href="#" data-target="productos" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Portfolio</a>
+                    <a href="#" data-target="porque-elegirnos" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">¿Por qué elegirnos?</a>
+                    <a href="#" data-target="contacto" class="nav-link text-gray-300 hover:text-white transition-colors duration-300">Contacto</a>
+                </nav>
+                <!-- Botón de Menú Móvil -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú Móvil (oculto por defecto) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" data-target="hero" class="nav-link block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium active">Inicio</a>
+                <a href="#" data-target="servicios" class="nav-link block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Servicios</a>
+                <a href="#" data-target="productos" class="nav-link block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
+                <a href="#" data-target="porque-elegirnos" class="nav-link block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">¿Por qué elegirnos?</a>
+                <a href="#" data-target="contacto" class="nav-link block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- ========== SECCIÓN HERO (Pestaña Inicio) ========== -->
+        <section id="hero" class="page-section relative overflow-hidden bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Columna de Texto -->
+                    <div class="text-center md:text-left">
+                        <h1 class="animated animate-fadeInUp text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                            Transformamos Ideas en <span class="text-indigo-400">Experiencias Digitales</span>
+                        </h1>
+                        <p class="animated animate-fadeInUp animation-delay-200 mt-6 max-w-xl mx-auto md:mx-0 text-lg md:text-xl text-gray-300">
+                            Somos una agencia de desarrollo y diseño que impulsa a las marcas a alcanzar su máximo potencial en el mundo digital.
+                        </p>
+                        <ul class="mt-8 space-y-4 text-left max-w-md mx-auto md:mx-0">
+                            <li class="animated animate-fadeInUp animation-delay-400 flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-400 mr-3 mt-1 flex-shrink-0"></i><span><strong class="text-white">Diseño Innovador:</strong> Interfaces atractivas y centradas en el usuario.</span></li>
+                            <li class="animated animate-fadeInUp animation-delay-600 flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-400 mr-3 mt-1 flex-shrink-0"></i><span><strong class="text-white">Código Optimizado:</strong> Soluciones rápidas, seguras y accesibles.</span></li>
+                            <li class="animated animate-fadeInUp animation-delay-800 flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 text-green-400 mr-3 mt-1 flex-shrink-0"></i><span><strong class="text-white">Soporte Dedicado:</strong> Acompañamiento constante en cada etapa.</span></li>
+                        </ul>
+                        <div class="animated animate-fadeInUp animation-delay-800 mt-10 flex flex-wrap justify-center md:justify-start gap-4">
+                            <a href="#" data-target="contacto" class="nav-link bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105">
+                                Empezar Proyecto
+                            </a>
+                            <a href="#" data-target="productos" class="nav-link bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105">
+                                Ver Portfolio
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Columna de Imagen -->
+                    <div class="relative mt-12 md:mt-0">
+                        <div class="animated animate-fadeInRight">
+                            <img src="galeria/foto_hero.png" alt="Equipo de Soluciones Digitales Quantum trabajando en un proyecto de desarrollo web." class="relative rounded-lg mx-auto z-10" onerror="this.onerror=null; this.src='https://placehold.co/600x700/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');">
+                            <!-- Formas decorativas -->
+                            <div class="absolute -top-8 -right-8 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl"></div>
+                            <div class="absolute -bottom-8 -left-8 w-48 h-48 bg-purple-500/20 rounded-lg blur-2xl transform rotate-45"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECCIÓN SERVICIOS (Pestaña) ========== -->
+        <section id="servicios" class="page-section hidden py-20 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white scroll-animate">Nuestros Servicios Integrales</h2>
+                    <p class="mt-4 text-lg text-gray-400 max-w-3xl mx-auto scroll-animate">Ofrecemos un ecosistema completo de soluciones digitales para llevar tu proyecto al siguiente nivel, cubriendo cada fase del ciclo de vida digital con excelencia y precisión.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation">
+                    <!-- Tarjetas de Servicio -->
+                    <article class="bg-gray-900 p-8 rounded-xl shadow-lg scroll-animate">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500 text-white mb-6"><i data-lucide="layout-template"></i></div>
+                        <h3 class="text-xl font-bold mb-4">Diseño Web UI/UX</h3>
+                        <p class="text-gray-400">Investigamos a fondo a tus usuarios para crear interfaces intuitivas, atractivas y accesibles. Desde wireframes y prototipos hasta el diseño final, nos aseguramos de que cada interacción sea fluida y memorable.</p>
+                    </article>
+                    <article class="bg-gray-900 p-8 rounded-xl shadow-lg scroll-animate">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500 text-white mb-6"><i data-lucide="code-2"></i></div>
+                        <h3 class="text-xl font-bold mb-4">Desarrollo Web Frontend</h3>
+                        <p class="text-gray-400">Creamos la parte visible e interactiva de tu sitio web con HTML, CSS y JavaScript. Nos especializamos en maquetación web responsiva y optimizada para ofrecer una experiencia de usuario excepcional en cualquier dispositivo.</p>
+                    </article>
+                    <article class="bg-gray-900 p-8 rounded-xl shadow-lg scroll-animate">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-500 text-white mb-6"><i data-lucide="search"></i></div>
+                        <h3 class="text-xl font-bold mb-4">Optimización SEO</h3>
+                        <p class="text-gray-400">Mejoramos la visibilidad de tu sitio web en buscadores como Google. Aplicamos las mejores prácticas de SEO técnico y de contenido desde la base para asegurar que tus clientes potenciales te encuentren.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECCIÓN PORTFOLIO (Pestaña Productos) ========== -->
+        <section id="productos" class="page-section hidden py-20 bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white scroll-animate">Nuestro Portfolio de Sitios Web</h2>
+                    <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto scroll-animate">Explora los distintos prototipos y tipos de sitios web que creamos para nuestros clientes.</p>
+                </div>
+                <!-- Filter Buttons -->
+                <div id="product-filters" class="flex justify-center flex-wrap gap-3 md:gap-4 mb-12 scroll-animate">
+                    <button data-filter="all" class="filter-btn active px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300">Todos</button>
+                    <button data-filter="corporativos" class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 bg-gray-700 hover:bg-gray-600">Corporativos</button>
+                    <button data-filter="portfolio" class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 bg-gray-700 hover:bg-gray-600">Portfolios</button>
+                    <button data-filter="catalogos" class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 bg-gray-700 hover:bg-gray-600">Catálogos</button>
+                </div>
+                <!-- Product Gallery -->
+                <div id="product-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <!-- Corporativos -->
+                    <div class="product-item group" data-category="corporativos">
+                        <div class="relative overflow-hidden rounded-lg shadow-lg"><img src="portfolio/web-consultora.png" alt="Diseño de sitio web para una consultora financiera." class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><div class="absolute bottom-0 left-0 p-4"><h3 class="text-lg font-bold text-white">Web para Consultora</h3></div></div>
+                    </div>
+                    <div class="product-item group" data-category="corporativos">
+                        <div class="relative overflow-hidden rounded-lg shadow-lg"><img src="portfolio/web-institucional.png" alt="Sitio web institucional para una organización sin fines de lucro." class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><div class="absolute bottom-0 left-0 p-4"><h3 class="text-lg font-bold text-white">Sitio Institucional</h3></div></div>
+                    </div>
+
+                    <!-- Portfolios -->
+                    <div class="product-item group" data-category="portfolio">
+                        <div class="relative overflow-hidden rounded-lg shadow-lg"><img src="portfolio/portfolio-fotografo.png" alt="Portfolio web minimalista para un fotógrafo profesional." class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><div class="absolute bottom-0 left-0 p-4"><h3 class="text-lg font-bold text-white">Portfolio para Fotógrafo</h3></div></div>
+                    </div>
+                    <div class="product-item group" data-category="portfolio">
+                        <div class="relative overflow-hidden rounded-lg shadow-lg"><img src="portfolio/portfolio-desarrollador.png" alt="Portfolio personal para un desarrollador frontend." class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><div class="absolute bottom-0 left-0 p-4"><h3 class="text-lg font-bold text-white">Portfolio de Desarrollador</h3></div></div>
+                    </div>
+
+                    <!-- Catalogos -->
+                    <div class="product-item group" data-category="catalogos">
+                        <div class="relative overflow-hidden rounded-lg shadow-lg"><img src="portfolio/catalogo-moda.png" alt="Catálogo digital interactivo para una marca de moda." class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><div class="absolute bottom-0 left-0 p-4"><h3 class="text-lg font-bold text-white">Catálogo de Moda</h3></div></div>
+                    </div>
+                    <div class="product-item group" data-category="catalogos">
+                        <div class="relative overflow-hidden rounded-lg shadow-lg"><img src="portfolio/catalogo-productos.png" alt="Catálogo de productos para una empresa de manufactura." class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1F2937/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><div class="absolute bottom-0 left-0 p-4"><h3 class="text-lg font-bold text-white">Catálogo de Productos</h3></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECCIÓN POR QUÉ ELEGIRNOS (Pestaña) ========== -->
+        <section id="porque-elegirnos" class="page-section hidden py-20 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white scroll-animate">¿Por qué Elegirnos?</h2>
+                    <p class="mt-4 text-lg text-gray-400 max-w-3xl mx-auto scroll-animate">En Quantum, no solo escribimos código o diseñamos interfaces. Construimos puentes entre las ideas de nuestros clientes y el éxito en el mundo digital.</p>
+                </div>
+                <!-- Misión y Visión -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 stagger-animation">
+                    <article class="bg-gray-900 p-8 rounded-lg scroll-animate">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Nuestra Misión</h3>
+                        <p class="text-gray-300">Empoderar a empresas de todos los tamaños con soluciones tecnológicas innovadoras, personalizadas y de alta calidad que generen un impacto medible y duradero.</p>
+                    </article>
+                     <article class="bg-gray-900 p-8 rounded-lg scroll-animate">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Nuestra Visión</h3>
+                        <p class="text-gray-300">Aspiramos a ser un referente de confianza en el desarrollo de sitios web de alta calidad, destacándonos por nuestra atención al detalle y por construir relaciones sólidas y duraderas con cada uno de nuestros clientes.</p>
+                    </article>
+                </div>
+                <!-- Contenido Adicional -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 stagger-animation">
+                    <article class="bg-gray-900 p-8 rounded-lg scroll-animate">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Nuestros Valores</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><i data-lucide="shield-check" class="w-5 h-5 mr-3 mt-1 text-green-400"></i><span><strong class="text-white">Calidad:</strong> Nos obsesionamos con los detalles y entregamos productos pulidos y profesionales.</span></li>
+                            <li class="flex items-start"><i data-lucide="users" class="w-5 h-5 mr-3 mt-1 text-green-400"></i><span><strong class="text-white">Colaboración:</strong> Creemos en el trabajo en equipo, tanto interno como con nuestros clientes.</span></li>
+                            <li class="flex items-start"><i data-lucide="lightbulb" class="w-5 h-5 mr-3 mt-1 text-green-400"></i><span><strong class="text-white">Innovación:</strong> Nos mantenemos actualizados para aplicar las mejores y más nuevas tecnologías.</span></li>
+                        </ul>
+                    </article>
+                    <article class="bg-gray-900 p-8 rounded-lg scroll-animate">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Nuestro Proceso</h3>
+                        <p class="text-gray-300">Nuestro método de trabajo es transparente y colaborativo. Inicia con una fase de descubrimiento para entender tus metas, seguido del diseño y desarrollo, con revisiones constantes para asegurar que el resultado final sea exactamente lo que esperas.</p>
+                    </article>
+                    <article class="bg-gray-900 p-8 rounded-lg scroll-animate">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-4">El Equipo</h3>
+                        <p class="text-gray-300">Somos un equipo apasionado de diseñadores y desarrolladores frontend con un objetivo en común: crear experiencias web memorables. Combinamos creatividad y precisión técnica para llevar tus ideas a la realidad.</p>
+                    </article>
+                    <article class="bg-gray-900 p-8 rounded-lg scroll-animate">
+                        <h3 class="text-2xl font-bold text-indigo-400 mb-4">¿Por qué Elegirnos?</h3>
+                        <p class="text-gray-300">Nos diferenciamos por nuestro enfoque personalizado. No ofrecemos soluciones genéricas; nos sumergimos en tu proyecto para crear un sitio web único que represente tu marca y conecte con tu audiencia de manera efectiva.</p>
+                    </article>
+                </div>
+                
+                <!-- Testimonios -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white scroll-animate">La Voz de Nuestros Clientes</h2>
+                     <p class="mt-4 text-lg text-gray-400 max-w-3xl mx-auto scroll-animate">La confianza es nuestro mayor activo. Esto es lo que dicen quienes han trabajado con nosotros.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto stagger-animation">
+                    <article class="bg-gray-900 p-8 rounded-xl shadow-lg scroll-animate"><p class="text-gray-300 italic">"Quantum transformó nuestra visión en una realidad digital impresionante. Su profesionalismo es inigualable."</p><div class="mt-6 flex items-center"><img class="h-12 w-12 rounded-full object-cover" src="galeria/cliente1.png" alt="Foto de perfil de Carla Estrada, dueña de una tienda de ropa." onerror="this.onerror=null; this.src='https://placehold.co/100x100/374151/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="ml-4"><p class="font-semibold text-white">Carla Estrada</p><p class="text-sm text-gray-400">Dueña de Tienda de Ropa</p></div></div></article>
+                    <article class="bg-gray-900 p-8 rounded-xl shadow-lg scroll-animate"><p class="text-gray-300 italic">"El equipo no solo entregó un producto de alta calidad, sino que nos asesoró en cada paso. Los recomiendo al 100%."</p><div class="mt-6 flex items-center"><img class="h-12 w-12 rounded-full object-cover" src="galeria/cliente2.png" alt="Foto de perfil de Marcos Jiménez, dueño de una cafetería." onerror="this.onerror=null; this.src='https://placehold.co/100x100/374151/FFFFFF?text=Falta+imagen:%0A' + this.getAttribute('src');"><div class="ml-4"><p class="font-semibold text-white">Marcos Jiménez</p><p class="text-sm text-gray-400">Dueño de Cafetería</p></div></div></article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECCIÓN CONTACTO (Pestaña) ========== -->
+        <section id="contacto" class="page-section hidden py-20 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Información de Contacto -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white scroll-animate">Hablemos de tu Próximo Proyecto</h2>
+                    <p class="mt-4 text-lg text-gray-400 scroll-animate">Estamos listos para escuchar tu idea y convertirla en una solución digital exitosa. Contáctanos.</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="scroll-animate">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Información de Contacto</h3>
+                        <div class="space-y-4 text-gray-300 bg-gray-900 p-8 rounded-lg shadow-lg">
+                            <p class="flex items-center text-lg"><i data-lucide="map-pin" class="w-6 h-6 mr-4 text-indigo-400 flex-shrink-0"></i> Diagonal 76 289 2D, La Plata, Buenos Aires, Argentina</p>
+                            <a href="https://wa.me/5491164020912" target="_blank" class="flex items-center text-lg hover:text-indigo-400 transition-colors duration-300">
+                                <i data-lucide="phone" class="w-6 h-6 mr-4 text-indigo-400 flex-shrink-0"></i>
+                                +54 9 11 6402-0912
+                            </a>
+                            <button id="email-copy-button" class="flex items-center text-lg w-full text-left hover:text-indigo-400 transition-colors duration-300">
+                                <i data-lucide="mail" class="w-6 h-6 mr-4 text-indigo-400 flex-shrink-0"></i>
+                                <span id="email-text">theaiproyectcrew@gmail.com</span>
+                            </button>
+                        </div>
+                        <div class="mt-8">
+                            <iframe class="w-full h-80 rounded-lg shadow-lg" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=-34.919436,-57.967218+(Soluciones+Digitales+Quantum)&hl=es&z=17&output=embed"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-gray-900 border-t border-gray-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-gray-400 text-sm">&copy; <span id="copyright-year"></span> Soluciones Digitales Quantum. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para copiar email -->
+    <div id="copy-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
+            <h3 class="text-lg font-medium text-white mb-2">Copiar Email</h3>
+            <p class="text-gray-400 mb-4">Haz clic en el botón para copiar nuestra dirección de correo.</p>
+            <div class="bg-gray-700 rounded-md p-3 mb-4">
+                <p id="copy-email-text" class="text-white">theaiproyectcrew@gmail.com</p>
+            </div>
+            <div class="flex gap-4">
+                <button id="copy-button" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Copiar</button>
+                <button id="close-modal-button" class="w-full bg-gray-600 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SCRIPT PARA ICONOS DE LUCIDE ---
+        lucide.createIcons();
+
+        // --- SCRIPT PARA EL MENÚ MÓVIL ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- SCRIPT PARA LA NAVEGACIÓN Y FUNCIONALIDADES DE CONTACTO ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+
+            function showTab(targetId) {
+                pageSections.forEach(section => {
+                    section.classList.add('hidden');
+                    section.classList.remove('animate-fadeIn');
+                });
+
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                    if (targetId !== 'hero') {
+                         targetSection.classList.add('animate-fadeIn');
+                    }
+                }
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.toggle('active', link.dataset.target === targetId);
+                });
+                
+                mobileMenu.classList.add('hidden');
+                window.scrollTo(0, 0);
+                lucide.createIcons();
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.dataset.target;
+                    if (targetId) {
+                        showTab(targetId);
+                    }
+                });
+            });
+            
+            // --- SCRIPT PARA FILTRADO DE PORTFOLIO ---
+            const filterContainer = document.getElementById('product-filters');
+            if(filterContainer) {
+                const filterButtons = filterContainer.querySelectorAll('.filter-btn');
+                const galleryItems = document.querySelectorAll('#product-gallery .product-item');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const currentActive = filterContainer.querySelector('.active');
+                        if (currentActive) {
+                            currentActive.classList.remove('active', 'bg-indigo-500', 'shadow-lg');
+                            currentActive.classList.add('bg-gray-700', 'hover:bg-gray-600');
+                        }
+                        
+                        button.classList.add('active', 'bg-indigo-500', 'shadow-lg');
+                        button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                        
+                        const filter = button.dataset.filter;
+
+                        galleryItems.forEach(item => {
+                            const isVisible = filter === 'all' || item.dataset.category === filter;
+                            if (!isVisible) {
+                                item.classList.add('hidden');
+                            } else {
+                                item.classList.remove('hidden');
+                            }
+                        });
+                    });
+                });
+            }
+
+            // --- SCRIPT PARA MODAL DE COPIAR EMAIL ---
+            const emailCopyButton = document.getElementById('email-copy-button');
+            const copyModal = document.getElementById('copy-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const copyButton = document.getElementById('copy-button');
+            const emailToCopy = document.getElementById('email-text').innerText;
+
+            if (emailCopyButton) {
+                emailCopyButton.addEventListener('click', () => {
+                    copyModal.classList.remove('hidden');
+                });
+            }
+
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', () => {
+                    copyModal.classList.add('hidden');
+                });
+            }
+            
+            if (copyButton) {
+                copyButton.addEventListener('click', () => {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = emailToCopy;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyButton.innerText = '¡Copiado!';
+                        copyButton.classList.remove('bg-indigo-500', 'hover:bg-indigo-600');
+                        copyButton.classList.add('bg-green-500');
+                        setTimeout(() => {
+                            copyButton.innerText = 'Copiar';
+                            copyButton.classList.remove('bg-green-500');
+                            copyButton.classList.add('bg-indigo-500', 'hover:bg-indigo-600');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Error al intentar copiar el email: ', err);
+                        copyButton.innerText = 'Error';
+                    }
+                    document.body.removeChild(textArea);
+                });
+            }
+
+            // --- SCRIPT PARA AÑO DINÁMICO EN FOOTER ---
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+            // --- SCRIPT PARA ANIMACIONES EN SCROLL ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.scroll-animate');
+            elementsToAnimate.forEach(el => observer.observe(el));
+
+            const staggerContainers = document.querySelectorAll('.stagger-animation');
+            staggerContainers.forEach(container => {
+                const children = container.querySelectorAll('.scroll-animate');
+                children.forEach((child, index) => {
+                    child.style.setProperty('--stagger-delay', `${index * 150}ms`);
+                });
+            });
+
+            // Mostrar la pestaña de inicio por defecto
+            showTab('hero');
+            setTimeout(() => lucide.createIcons(), 100);
+        });
+    </script>
+
+</body>
+</html>
