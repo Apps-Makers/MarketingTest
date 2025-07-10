@@ -9,6 +9,9 @@
     <meta name="description" content="Potenciamos tu marca con gestión de redes sociales, creación de contenido y estrategias de crecimiento. Conectamos con tu audiencia y construimos comunidades sólidas en La Plata, Buenos Aires.">
     <meta name="keywords" content="community manager, redes sociales, la plata, marketing digital, estrategia de contenido, social media, gestion de redes, cm studio">
     <link rel="canonical" href="https://cmstudio-lp.netlify.app/"> <!-- URL de ejemplo -->
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="galeria/hero-community-manager.png">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -496,7 +499,7 @@
         const imageFormats = ['.png', '.jpg', '.jpeg', '.webp'];
         function tryNextFormat(img, baseName) {
             // Obtener el índice del formato actual o empezar en 0 si no está definido
-            let currentIndex = parseInt(img.dataset.formatIndex || '0');
+            let currentIndex = parseInt(img.dataset.formatIndex || '-1');
             
             // Intentar con el siguiente formato de la lista
             const nextIndex = currentIndex + 1;
